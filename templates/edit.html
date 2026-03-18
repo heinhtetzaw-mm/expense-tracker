@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Edit Expense</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <main class="wrap">
+        <h1>Edit Expense</h1>
+
+        <section class="section-box">
+            <form method="POST" action="/edit/{{ expense['id'] }}" class="edit-form">
+                <input type="number" step="1" min="0" name="amount" value="{{ expense['amount']|int }}" required>
+
+                <select name="category" required>
+                    <option value="Food" {% if expense['category']=="Food" %}selected{% endif %}>Food</option>
+                    <option value="Transport" {% if expense['category']=="Transport" %}selected{% endif %}>Transport
+                    </option>
+                    <option value="Shopping" {% if expense['category']=="Shopping" %}selected{% endif %}>Shopping
+                    </option>
+                    <option value="Other" {% if expense['category']=="Other" %}selected{% endif %}>Other</option>
+                </select>
+
+                <input type="date" name="date" value="{{ expense['date'] }}" required>
+
+                <input type="text" name="note" value="{{ expense['note'] }}" placeholder="Note">
+
+                <div class="edit-actions">
+                    <a href="/" class="back-btn">Back</a>
+                    <button type="submit" class="primary-btn">Save</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
